@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<head></head>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcul de Distance</title>
+</head>
 <body>
-    <p>Votre resultat est {{ result }}</p>
-    <h1>Distance</h1>
+    <h1>Calcul de distance entre deux points</h1>
+
+    {% if error %}
+    <p style="color: red;">Erreur : {{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+    <p>
+        Distance entre A({{ result.point_a[0] }}, {{ result.point_a[1] }})
+        et B({{ result.point_b[0] }}, {{ result.point_b[1] }}) =
+        <strong>{{ "%.4f"|format(result.result_distance) }}</strong>
+    </p>
+    {% else %}
+    <p>Saisissez les coordonnees de deux points pour calculer leur distance.</p>
+    {% endif %}
+
     <form method="POST" action="/">
-        <input type="text" name="point_a" id="point_a">
-        <input type="text" name="point_b" id="point_b">
-        <input type="submit" value="soumettre">
+        <div>
+            <label for="point_a">Point A (x,y) :</label>
+            <input type="text" name="point_a" id="point_a" placeholder="ex : 2,5" required>
+        </div>
+        <div>
+            <label for="point_b">Point B (x,y) :</label>
+            <input type="text" name="point_b" id="point_b" placeholder="ex : 1,6" required>
+        </div>
+        <input type="submit" value="Calculer la distance">
     </form>
 </body>
 </html>
