@@ -51,7 +51,7 @@ def get_distances():
 
 @app.route('/api/distance', methods=['POST'])
 def calculate():
-    data = request.get_json()
+    data = request.get_json(silent=True)
     if not data:
         return jsonify({'error': 'Corps JSON requis'}), 400
 
